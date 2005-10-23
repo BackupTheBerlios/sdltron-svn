@@ -1,21 +1,21 @@
-CPPFLAGS=$(shell sdl-config --cflags) \
-		 -I../../../SDL_net++/src \
-		 -I../../../pack++ \
-		 -I../../../hexstream
-CXXFLAGS=-Wall -g -ansi -pedantic
+TOP=../..
+include $(TOP)/config.mak
 
 all: libtronnet.a
 
-libtronnet.a: tron.o tronnet.o client.o ../../../hexstream/hexstream.o
-	ar crv $@ $?
+libtronnet.a: tron.o tronnet.o client.o $(HEXSTREAM)/hexstream.o
+	$(AR) crv $@ $?
+	$(RANLIB) $@
 
-tron.cc tron.h: tron.pack ../../../pack++/genpack
-	../../../pack++/genpack tron.pack
+#tron.cc tron.h: tron.pack $(SDLPACKPP)/genpack
+#	$(SDLPACKPP)/genpack tron.pack
+
+tron.cc tron.h: tron.pack
 
 tron.o: tron.cc
-tron.o: tron.h ../../../pack++/pack++.h
+tron.o: tron.h $(SDLPACKPP)/pack++.h
 
 clean:
-	rm -f libtronnet.a *.o
+	rm -f libtronnet.a *.o tron.cc tron.h tron.html
 
 new: clean all

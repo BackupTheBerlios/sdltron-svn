@@ -1,13 +1,5 @@
-CPPFLAGS=$(shell sdl-config --cflags) \
-		 -I../../../SDL_net++/src \
-		 -I../../../pack++
-CXXFLAGS=-Wall -g -ansi -pedantic
-LDFLAGS=\
-		-L../protocol -ltronnet \
-		-L../../../pack++ -lpack++ \
-		-L../../../SDL_net++/src -lSDL_net++ \
-		$(shell sdl-config --libs) \
-		-lSDL_net
+TOP=../..
+include $(TOP)/config.mak
 
 all: tronserver
 
