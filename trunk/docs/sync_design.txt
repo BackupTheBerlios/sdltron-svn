@@ -1,0 +1,11 @@
+http://www.mine-control.com/zack/timesync/timesync.html
+
+base=SDL_GetTicks()
+Uint32 Now() { return SDL_GetTicks()-base; }
+
+for each client:
+	Server -Sync-> Client
+		Sync.seq=0;
+		Sync.server=Now();
+		Sync.client=0;
+	

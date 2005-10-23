@@ -1,0 +1,35 @@
+Any -Ping-> Other
+	Ping.time = SDL_GetTicks();
+Any <-Pong- Other
+	Pong.time = Ping.time
+
+Client -Quit-> Server -Quit-> OtherClients
+	Quit.nick = Login.nick
+
+Server -Register-> Tracker -Register-> Clients
+Server -Settings-> Tracker -Settings-> Clients
+	Settings.name = Register.name
+Server -Status-> Tracker -Status-> Clients
+	Status.name = Register.name
+
+Client -Login-> Server -Login-> AllClients
+
+Server -Player-> Clients
+	if Player.player==0 client clears its player list
+
+Client -Chat-> Server -Chat-> OtherClients
+	Chat.nick = Login.nick
+
+Server -Sync-> Client -Sync-> Server -Sync-> Client
+	Syncs are sent from Server 5 per second
+	Server stops after collecting enough data to analyze lag/jitter
+	Server will return at least 1 Sync to Client
+
+Client -Turn-> OtherClients
+	Turn.player = Player.player
+Client -Turn-> Server -Turn-> AllClients
+	Turn.player = Player.player
+	Turn is resent from Client until updated Turn is recvd
+	Turn is resent from Server until corrosponding AckTurn is recvd
+Server <-AckTurn- OtherClients
+	AckTurn.index = Turn.index

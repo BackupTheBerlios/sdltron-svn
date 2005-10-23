@@ -1,0 +1,5 @@
+time   : Ping, Pong
+nick   : Login, Quit, Player, Chat
+name   : Register, Settings, Status
+player : Player, Turn, StartPos.*[player], Death, Score.score[player]
+index  : Turn, AckTurn

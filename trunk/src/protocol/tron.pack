@@ -1,0 +1,91 @@
+include "SDL.h"
+
+pack Ping
+elem Uint32 time
+
+pack Pong
+elem Uint32 time
+
+pack Quit
+elem string nick
+elem string message
+
+pack Tracker_Info
+elem Uint32 version
+elem string name
+elem Uint32 num_servers
+elem Uint32 num_clients
+
+pack Register
+elem Uint32 version
+elem string name
+elem Uint16 port
+elem Uint8 ip[4]
+
+pack Settings
+elem string name
+elem Uint8 erase
+elem float speed
+elem Uint16 grid_size
+elem Uint8 max_players
+elem Uint8 max_observers
+elem string passwd
+elem Uint8 pure
+
+pack Status
+elem string name
+elem Uint8 players
+elem Uint8 observers
+elem Uint8 in_play
+
+pack Passwd
+elem string passwd
+
+pack Login
+elem string nick
+elem Uint32 version
+elem Uint8 is_master
+elem Uint8 is_admin
+
+pack Player
+elem string nick
+elem Sint8 player
+elem Uint32 ping
+elem Uint16 port
+elem Uint8 ip[4]
+
+pack Chat
+elem string nick
+elem string message
+
+pack Sync
+elem Uint8 seq
+elem Uint32 server
+elem Uint32 client
+
+pack Turn
+elem Sint8 player
+elem Uint8 dir
+elem Uint32 time
+elem float pos[2]
+elem Uint32 index
+
+pack AckTurn
+elem Uint32 index
+
+pack Start
+elem Uint32 time
+
+pack StartPos
+elem float posx[4]
+elem float posy[4]
+elem Uint8 dir[4]
+
+pack Death
+elem Sint8 player
+elem Uint32 time
+elem float pos[2]
+
+pack Score
+elem Sint16 score[4]
+elem Uint32 time
